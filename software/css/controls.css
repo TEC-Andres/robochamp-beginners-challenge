@@ -1,0 +1,39 @@
+/* gamepad controls: sticks, buttons, d-pad, centre cluster */
+  /* sticks */
+  .stick { width: 30vh; height: 30vh; border-radius: 50%; background: radial-gradient(circle, #1d222d, #10131a);
+    border: 2px solid var(--edge); }
+  .knob { position: absolute; left: 50%; top: 50%; width: 52%; height: 52%; margin: -26% 0 0 -26%; border-radius: 50%;
+    background: radial-gradient(circle at 50% 40%, #3a4150 0 30%, #232834 31% 100%); border: 3px solid #4b5466; pointer-events: none; }
+  .stick.on { border-color: var(--ps-hi); box-shadow: 0 0 2vh rgba(77,163,255,.35); }
+
+  /* buttons */
+  .btn { display: grid; place-items: center; font-weight: 700; color: var(--text); background: var(--panel);
+    border: 2px solid var(--edge); transition: transform .06s, filter .06s; }
+  .btn.on { filter: brightness(1.7); transform: scale(.93); }
+
+  .face { width: 12vh; height: 12vh; border-radius: 50%; font-size: 6vh; background: #11141b; }
+  .face svg { width: 52%; height: 52%; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+  .face.tri { color: var(--tri); border-color: var(--tri); }
+  .face.cir { color: var(--cir); border-color: var(--cir); }
+  .face.cro { color: var(--cro); border-color: var(--cro); }
+  .face.squ { color: var(--squ); border-color: var(--squ); }
+
+  .trig { width: 20vh; height: 9vh; border-radius: 2vh 2vh 4vh 4vh; font-size: 3.4vh; }
+  .small { width: 9vh; height: 5vh; border-radius: 2.5vh; font-size: 1.9vh; color: var(--dim); }
+
+  /* d-pad */
+  .dpad { width: 26vh; height: 26vh; }
+  .dpad .btn { position: absolute; width: 33.3%; height: 33.3%; font-size: 3vh; }
+  .dpad .u { left: 33.3%; top: 0; border-radius: 1.2vh 1.2vh 0 0; } .dpad .d { left: 33.3%; top: 66.6%; border-radius: 0 0 1.2vh 1.2vh; }
+  .dpad .l { left: 0; top: 33.3%; border-radius: 1.2vh 0 0 1.2vh; } .dpad .r { left: 66.6%; top: 33.3%; border-radius: 0 1.2vh 1.2vh 0; }
+  .dpad .c { left: 33.3%; top: 33.3%; width: 33.3%; height: 33.3%; background: var(--panel); position: absolute; }
+
+  /* centre: light bar, touchpad (status), PS button */
+  #bar { height: .8vh; width: 22vw; border-radius: 1vh; background: var(--ps); box-shadow: 0 0 1.6vh var(--ps); transition: background .3s, box-shadow .3s; }
+  .touchpad { width: 30vw; height: 20vh; border-radius: 2.4vh; background: linear-gradient(#1a1f2a, #121620); border: 2px solid var(--edge);
+    display: grid; place-content: center; text-align: center; gap: .8vh; }
+  .dot { display: inline-block; width: 1.6vh; height: 1.6vh; border-radius: 50%; background: var(--red); margin-right: .8vh; }
+  .dot.ok { background: var(--ok); }
+  .color-chip { padding: .5vh 1.6vh; border-radius: 2vh; background: #0d1017; border: 2px solid var(--edge); font-size: 2.4vh; }
+  #pads { color: var(--dim); font-size: 2vh; }
+  .ps { width: 7vh; height: 7vh; border-radius: 50%; font-size: 2.6vh; font-style: italic; letter-spacing: -.1em; color: var(--ps-hi); border-color: var(--ps); }

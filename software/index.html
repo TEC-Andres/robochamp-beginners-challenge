@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>RoboChamp Controller</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/controls.css">
+<link rel="stylesheet" href="css/calibration.css">
+</head>
+<body>
+
+<div class="pad" id="pad">
+  <!-- triggers -->
+  <div class="btn trig abs" data-axis="lt" style="left: 4vw; top: 3vh">L2</div>
+  <div class="btn trig abs" data-axis="rt" style="right: 4vw; top: 3vh">R2</div>
+
+  <!-- d-pad: fixed-speed nudges -->
+  <div class="dpad abs" style="left: 5vw; top: 15vh">
+    <div class="btn u" data-dpad="up">▲</div>
+    <div class="btn l" data-dpad="left">◀</div>
+    <div class="c"></div>
+    <div class="btn r" data-dpad="right">▶</div>
+    <div class="btn d" data-dpad="down">▼</div>
+  </div>
+
+  <!-- centre: light bar mirrors the detected color; touchpad shows link status -->
+  <div class="abs" style="left: 50%; top: 3vh; transform: translateX(-50%); display: grid; justify-items: center; gap: 1.2vh">
+    <div id="bar"></div>
+    <div class="touchpad">
+      <div><span class="dot" id="dot"></span><span id="conn">Connecting…</span></div>
+      <div><span class="color-chip" id="color">Color: —</span></div>
+      <div id="pads"></div>
+    </div>
+  </div>
+  <div class="btn small abs" data-btn="create" style="left: calc(50% - 22vw); top: 18vh">Create</div>
+  <div class="btn small abs" id="menu" style="left: calc(50% + 22vw - 9vh); top: 18vh">Options</div>
+  <div class="btn ps abs" style="left: calc(50% - 3.5vh); bottom: 5vh">PS</div>
+
+  <!-- left stick: drive -->
+  <div class="stick abs" id="ls" style="left: 22vw; bottom: 4vh"><div class="knob"></div></div>
+
+  <!-- face buttons -->
+  <div class="abs" style="right: 5vw; top: 15vh; width: 30vh; height: 30vh">
+    <div class="btn face tri abs" data-btn="tri" style="left: 9vh; top: 0"><svg viewBox="0 0 24 24"><polygon points="12,4 21,19.5 3,19.5"/></svg></div>
+    <div class="btn face squ abs" data-btn="squ" style="left: 0; top: 9vh"><svg viewBox="0 0 24 24"><rect x="4.5" y="4.5" width="15" height="15" rx="1.5"/></svg></div>
+    <div class="btn face cir abs" data-btn="cir" style="right: 0; top: 9vh"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg></div>
+    <div class="btn face cro abs" data-btn="cro" style="left: 9vh; bottom: 0"><svg viewBox="0 0 24 24"><path d="M5 5L19 19M19 5L5 19"/></svg></div>
+  </div>
+
+  <!-- right stick: spin -->
+  <div class="stick abs" id="rs" style="right: 22vw; bottom: 4vh; width: 26vh; height: 26vh"><div class="knob"></div></div>
+</div>
+
+<div id="cal">
+  <h2>Calibration</h2>
+
+  <h3>Motor gain (1.00 = unchanged) — hold Test to spin one motor at 40%</h3>
+  <div id="gains"></div>
+  <div class="chips">
+    <button class="chip" id="save">Save to robot</button>
+    <button class="chip" id="reset">Reset to 1.00</button>
+  </div>
+
+  <h3>Color sensor — point it at a color, then press Learn</h3>
+  <div class="chips" id="learn"></div>
+  <div class="chips" style="margin-top:1.2vh"><button class="chip" id="read">Read color now</button></div>
+  <div class="note" id="calnote">Learned colors are kept until the robot reboots.</div>
+
+  <div class="chips" style="margin-top:3vh"><button class="chip" id="close">Close</button></div>
+</div>
+
+<div id="rotate">Rotate your phone to landscape</div>
+
+<script src="js/dom.js"></script>
+<script src="js/link.js"></script>
+<script src="js/input.js"></script>
+<script src="js/calibrationPanel.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
