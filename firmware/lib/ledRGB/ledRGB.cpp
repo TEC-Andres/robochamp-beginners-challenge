@@ -8,6 +8,9 @@ void LEDRGB::begin() {
     pinMode(_redPin, OUTPUT);
     pinMode(_greenPin, OUTPUT);
     pinMode(_bluePin, OUTPUT);
+    // boot self-test: red, green, blue, off. If this shows but colors never change, the problem is the sensor, not the LED.
+    const int test[][3] = {{255, 0, 0}, {0, 255, 0}, {0, 0, 255}, {0, 0, 0}};
+    for (const auto& c : test) { setColor(c[0], c[1], c[2]); delay(300); }
 }
 
 void LEDRGB::setColor(int red, int green, int blue) {

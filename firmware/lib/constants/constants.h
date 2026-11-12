@@ -14,7 +14,7 @@ namespace Constants {
 
         // Yellow TT gear motors stall below ~30% duty; nonzero commands (-255..255) are scaled into [minPwm, maxPwm].
         constexpr float minPwm = 80.0f;
-        constexpr float maxPwm = 150.0f; // full stick / 6th gear
+        constexpr float maxPwm = 255.0f; // full stick / 6th gear
         constexpr float rotateSpeed = 200.0f; // spin-in-place speed
 
         // Driver enable pins, held HIGH for the whole run.
@@ -40,7 +40,7 @@ namespace Constants {
 
     // Common-cathode RGB LED with resistors.
     namespace Led {
-        constexpr int red = 18, green = 5, blue = 19;
+        constexpr int red = 19, green = 18, blue = 5;
     }
 
     // Servo (ESP32Servo): 50 Hz, pulse range in microseconds.

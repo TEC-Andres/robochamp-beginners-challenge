@@ -37,5 +37,6 @@ setInterval(() => {
 document.addEventListener('visibilitychange', () => { if (document.hidden) Link.robot.stop(); });
 window.addEventListener('blur', Link.robot.stop);
 
+setInterval(Link.robot.readColor, 250); // △ is the servo now, so poll the sensor (4 Hz) to keep Color: live
 Link.connect();
 if (new URLSearchParams(location.search).has('cal')) Cal.open(); // calibration entrypoint opens this URL
