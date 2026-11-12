@@ -11,5 +11,6 @@ public:
 
 private:
     int _redPin, _greenPin, _bluePin;
+    static void write(int pin, int value);
 };
 

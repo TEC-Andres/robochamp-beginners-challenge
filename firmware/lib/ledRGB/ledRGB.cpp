@@ -14,9 +14,15 @@ void LEDRGB::begin() {
 }
 
 void LEDRGB::setColor(int red, int green, int blue) {
-    analogWrite(_redPin, red);
-    analogWrite(_greenPin, green);
-    analogWrite(_bluePin, blue);
+    write(_redPin, red);
+    write(_greenPin, green);
+    write(_bluePin, blue);
+}
+
+// analogWrite(0) can leave a faint glow on some cores, so drive the pin fully LOW instead
+void LEDRGB::write(int pin, int value) {
+    if (value == 0) digitalWrite(pin, LOW);
+    else analogWrite(pin, value);
 }
 
 void LEDRGB::setColor(Constants::ColorsOnTrack color) {
