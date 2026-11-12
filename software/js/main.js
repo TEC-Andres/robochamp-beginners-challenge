@@ -15,9 +15,11 @@ Link.on('color', i => {
 });
 
 // ---------- UI -> firmware ----------
-const actions = { tri: Link.robot.readColor, create: Cal.close, options: Cal.open };
+const SERVO_CLOSED = 0, SERVO_OPEN = 90; // closed = Constants::ServoConfig::startDeg (boot position)
+let servoOpen = false;
+const toggleServo = () => { servoOpen = !servoOpen; Link.robot.servo(servoOpen ? SERVO_OPEN : SERVO_CLOSED); };
+const actions = { tri: toggleServo }; // △ opens / closes the servo
 Input.bindTouch(actions);
-$('menu').onclick = Cal.open;
 Cal.init();
 
 let wasMoving = false, lastSendAt = 0;
