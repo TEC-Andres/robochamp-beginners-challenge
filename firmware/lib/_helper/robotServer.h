@@ -5,7 +5,7 @@
 #include "ledRGB.h"
 #include "Servo.h"
 #include "motors.h"
-#include "TCS3200.h"
+#include "TCS34725.h"
 
 // WiFi access point that serves software/ from flash and takes commands over WebSocket.
 //   phone -> robot: D,y,w | S | M,idx,v | G,fl,fr,rl,rr | SAVE | C | L,colorIdx | V,degrees
@@ -26,7 +26,7 @@ private:
     const Mode mode;
     Motors motors;
     Calibration cal;
-    TCS3200 sensor;
+    TCS34725 sensor;
     LEDRGB led;
     RobotServo servo;
     WebServer http;

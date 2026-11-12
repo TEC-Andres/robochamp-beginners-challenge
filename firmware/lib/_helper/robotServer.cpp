@@ -9,7 +9,7 @@ namespace {
 
 RobotServer::RobotServer(Mode mode)
     : mode(mode),
-      sensor(Constants::Sensor::s0, Constants::Sensor::s1, Constants::Sensor::s2, Constants::Sensor::s3, Constants::Sensor::out),
+      sensor(Constants::Sensor::sda, Constants::Sensor::scl),
       led(Constants::Led::red, Constants::Led::green, Constants::Led::blue),
       http(Constants::Network::httpPort),
       ws(Constants::Network::wsPort) {}

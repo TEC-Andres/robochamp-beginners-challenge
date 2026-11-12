@@ -3,8 +3,6 @@
 namespace Constants {
     enum class RotationDirection { Left, Right };
 
-    enum class ColorFilter { Red, Green, Blue, Clear };
-
     enum class ColorsOnTrack { Red, Yellow, Green, Blue, Gray };
 
     namespace Motor {
@@ -35,9 +33,9 @@ namespace Constants {
         constexpr unsigned long failsafeMs = 500; // stop if no command arrives for this long
     }
 
-    // TCS3200: OUT on an input-only pin; S0-S3 on free output pins (not used by motors, LED, servo or strapping).
+    // TCS34725 color sensor on I2C.
     namespace Sensor {
-        constexpr int s0 = 13, s1 = 16, s2 = 17, s3 = 23, out = 34;
+        constexpr int sda = 21, scl = 22; // I2C, ESP32 default Wire pins
     }
 
     // Common-cathode RGB LED with resistors.
@@ -47,7 +45,7 @@ namespace Constants {
 
     // Servo (ESP32Servo): 50 Hz, pulse range in microseconds.
     namespace ServoConfig {
-        constexpr int pin = 21;
+        constexpr int pin = 12;
         constexpr int hz = 50;
         constexpr int minUs = 500, maxUs = 2400;
         constexpr int startDeg = 0;   // position on boot
