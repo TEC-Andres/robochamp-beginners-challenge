@@ -24,8 +24,8 @@ void Motor::setSpeed(float speed) {
         return;
     }
 
-    // map 1..255 onto minPwm..255 so any commanded speed actually turns the motor
-    const int pwm = (int)(Constants::Motor::minPwm + (fabsf(speed) - 1.0f) * (255.0f - Constants::Motor::minPwm) / 254.0f);
+    // map 1..255 onto minPwm..maxPwm so any commanded speed actually turns the motor
+    const int pwm = (int)(Constants::Motor::minPwm + (fabsf(speed) - 1.0f) * (Constants::Motor::maxPwm - Constants::Motor::minPwm) / 254.0f);
 
     analogWrite(speed > 0 ? cfg.reversePin : cfg.forwardPin, 0);
     analogWrite(speed > 0 ? cfg.forwardPin : cfg.reversePin, pwm);

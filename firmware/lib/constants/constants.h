@@ -14,8 +14,9 @@ namespace Constants {
             float speedOffset;
         };
 
-        // Yellow TT gear motors stall below ~30% duty; nonzero commands are scaled into [minPwm, 255].
+        // Yellow TT gear motors stall below ~30% duty; nonzero commands (-255..255) are scaled into [minPwm, maxPwm].
         constexpr float minPwm = 80.0f;
+        constexpr float maxPwm = 150.0f; // full stick / 6th gear
         constexpr float rotateSpeed = 200.0f; // spin-in-place speed
 
         // Driver enable pins, held HIGH for the whole run.

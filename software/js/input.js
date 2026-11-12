@@ -9,10 +9,14 @@ const pad = { lx: 0, ly: 0, rx: 0, ry: 0, cro: 0, cir: 0, squ: 0, tri: 0, up: 0,
 const dz = v => (Math.abs(v) < DEADZONE ? 0 : v);
 const clamp = v => Math.max(-1, Math.min(1, v));
 
-// □ / ○ step the speed down / up per press, 20%..100%
-let scale = 0.7;
-const speed = d => { scale = Math.max(0.2, Math.min(1, Math.round((scale + d) * 10) / 10)); };
-const speedActions = { squ: () => speed(-0.1), cir: () => speed(0.1) };
+// □ / ○ shift down / up one gear per press; starts in 1st
+const GEARS = [0.30, 0.38, 0.49, 0.62, 0.79, 1.00];
+let gear = 0, scale = GEARS[0];
+const shift = d => {
+  gear = Math.max(0, Math.min(GEARS.length - 1, gear + d)); scale = GEARS[gear];
+  $('gear').textContent = `Velocidad ${gear + 1}/${GEARS.length}`;
+};
+const speedActions = { squ: () => shift(-1), cir: () => shift(1) };
 
 // ---------- touch ----------
 function bindStick(el, setX, setY) {
@@ -41,6 +45,7 @@ function bindHold(el, key, onDown) {
 
 // actions: { tri } called on press, from touch or physical pad
 function bindTouch(actions) {
+  shift(0); // show the starting gear
   bindStick($('ls'), v => pad.lx = v, v => pad.ly = v);
   bindStick($('rs'), v => pad.rx = v, v => pad.ry = v);
   document.querySelectorAll('[data-btn]').forEach(el => bindHold(el, el.dataset.btn, actions[el.dataset.btn] || speedActions[el.dataset.btn]));
